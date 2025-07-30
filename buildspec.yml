@@ -3,7 +3,6 @@ version: 0.2
 env:
   variables:
     IMAGE_REPO_NAME: hello-fargate
-    IMAGE_TAG: $CODEBUILD_RESOLVED_SOURCE_VERSION
     AWS_REGION: us-east-1
 
 phases:
@@ -11,6 +10,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 274921264719.dkr.ecr.$AWS_REGION.amazonaws.com
+      - IMAGE_TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION}
   build:
     commands:
       - echo Building Docker image...
