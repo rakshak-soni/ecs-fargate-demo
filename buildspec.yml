@@ -22,7 +22,7 @@ phases:
     commands:
       - echo Pushing Docker image to ECR...
       - docker push 274921264719.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-      - printf '[{"name":"hello-task","imageUri":"%s"}]' 274921264719.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"fargate-container","imageUri":"%s"}]' 274921264719.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
