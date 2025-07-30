@@ -10,7 +10,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 274921264719.dkr.ecr.$AWS_REGION.amazonaws.com
-      - IMAGE_TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION}
+      - echo "Setting image tag..."
+      - IMAGE_TAG=$(date +%Y%m%d%H%M%S)
+
   build:
     commands:
       - echo Building Docker image...
